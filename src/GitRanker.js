@@ -1,0 +1,100 @@
+/* global chrome */
+
+import React, { Component } from "react";
+import { Button } from "@material-ui/core";
+import Dialog from "@material-ui/core/Dialog";
+
+class GitRanker extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        configData: this.props.id,
+        profile: this.props.profile,
+        loading: false,
+        actionDefault: "Check Rank",
+      };
+  }
+  getRankData = async () => {
+    var rankData = null;
+    if (this.state.configData) {
+      rankData = await fetch(
+        "https://ratings-api.dev.reputationaire.com/api/result?id=" +
+          this.state.configData +
+          "&access=f62345e8-9378-425b-b122-ecb4a9610a38",
+        {
+          method: "GET",
+          dataType: "JSON",
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+          },
+        }
+      )
+        .then((resp) => {
+          return resp.json();
+        })
+        .then((data) => {
+          console.log(data);
+          this.setState({ rankData: data });
+        })
+        .catch((error) => {
+          console.log(
+            error,
+            "An exception has occured. Please check the application."
+          );
+        });
+      console.log(rankData);
+    } else {
+      return "error";
+    }
+    this.setState({ loading: false });
+    return rankData;
+  };
+
+  render() {
+    return (
+      <div>
+        <Dialog
+          aria-labelledby="customized-dialog-title"
+          open={true}
+          style={{
+            width: "300px",
+          }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              this.setState({ loading: true });
+              this.getRankData();
+            }}
+            style={{
+              width: "200px",
+              fontSize: 10,
+            }}
+          >
+            {this.state.loading
+              ? "Crunching 50 million developers..."
+              : this.state.configData
+              ? this.state.rankData
+                ? this.state.rankData.message.average
+                  ? "Github rank for the profile " +
+                    this.state.profile +
+                    " is " +
+                    String(
+                      Math.round(this.state.rankData.message.average * 100) /
+                        100
+                    ) +
+                    "%"
+                  : this.state.rankData.message.credit_exhausted
+                  ? "Sorry Credit Exhausted"
+                  : "Error Please Try Again"
+                : this.state.actionDefault + " for " + this.state.profile
+              : "Error"}
+          </Button>
+        </Dialog>
+      </div>
+    );
+  }
+}
+
+export default GitRanker;
