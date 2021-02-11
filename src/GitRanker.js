@@ -42,7 +42,6 @@ class GitRanker extends Component {
             "An exception has occured. Please check the application."
           );
         });
-      console.log(rankData);
     } else {
       return "error";
     }
