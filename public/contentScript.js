@@ -22,7 +22,16 @@ async function MainApp() {
           el === "security" ||
           el === "discover" ||
           el === "forked" ||
-          el === "starred"
+          el === "starred" ||
+          el === "team" ||
+          el === "enterprise" ||
+          el === "marketplace" ||
+          el === "features" ||
+          el === "careers" ||
+          el === "site-map" ||
+          el === "readme" ||
+          el === "customer-stories" ||
+          el === "git-guides" 
         ) {
           return false;
         } else {
