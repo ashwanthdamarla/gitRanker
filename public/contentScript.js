@@ -1,6 +1,25 @@
-
 var pageLinks = document.links;
 var reg = /(https?:\/\/(.+?\.)?github\.com(\/[A-Za-z0-9\-\._~:\/\?#\[\]@!$&'\(\)\*\+,;\=]*)?)/;
+var apifilterList = [
+  "",
+  "login",
+  "about",
+  "pricing",
+  "contact",
+  "join",
+  "security",
+  "discover",
+  "forked",
+  "starred",
+  "team",
+  "enterprise",
+  "marketplace",
+  "features",
+  "careers",
+  "readme",
+  "customer-stories",
+  "git-guides",
+];
 var dataArrary = [];
 var tempData = null;
 
@@ -12,27 +31,7 @@ async function MainApp() {
       var pathComponents = regpath.split("/");
 
       var filteredComponents = pathComponents.filter(function (el) {
-        if (
-          el === "" ||
-          el === "login" ||
-          el === "about" ||
-          el === "pricing" ||
-          el === "contact" ||
-          el === "join" ||
-          el === "security" ||
-          el === "discover" ||
-          el === "forked" ||
-          el === "starred" ||
-          el === "team" ||
-          el === "enterprise" ||
-          el === "marketplace" ||
-          el === "features" ||
-          el === "careers" ||
-          el === "site-map" ||
-          el === "readme" ||
-          el === "customer-stories" ||
-          el === "git-guides" 
-        ) {
+        if (apifilterList.includes(el.toLowerCase())) {
           return false;
         } else {
           return true;
@@ -78,7 +77,9 @@ async function MainApp() {
             }
           });
         const iframe = document.getElementById("gitRanker" + String(i));
-        iframe.src = chrome.extension.getURL("index.html?id=" + tempData+"&profile="+filteredComponents[0]);
+        iframe.src = chrome.extension.getURL(
+          "index.html?id=" + tempData + "&profile=" + filteredComponents[0]
+        );
         iframe.frameBorder = 0;
         var nametext = pageLinks[i].textContent;
 
@@ -96,8 +97,6 @@ async function MainApp() {
           iframe.parentNode.removeChild(iframe);
           dialog.remove();
         });
-
-
       }
     }
   }
