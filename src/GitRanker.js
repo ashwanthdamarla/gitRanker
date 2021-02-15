@@ -39,7 +39,7 @@ class GitRanker extends Component {
         .catch((error) => {
           console.log(
             error,
-            "An exception has occured. Please check the application."
+            "An exception has occured while fetching rank API. Please check the application."
           );
         });
     } else {

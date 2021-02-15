@@ -75,7 +75,7 @@ async function MainApp() {
 
               return data["message"]["uuid_github"];
             }
-          });
+          }).catch((e)=>console.log("Error fetching POST request"));
         const iframe = document.getElementById("gitRanker" + String(i));
         iframe.src = chrome.extension.getURL(
           "index.html?id=" + tempData + "&profile=" + filteredComponents[0]
