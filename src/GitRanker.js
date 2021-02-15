@@ -37,6 +37,7 @@ class GitRanker extends Component {
           this.setState({ rankData: data });
         })
         .catch((error) => {
+          this.setState({ fetchError: true });
           console.log(
             error,
             "An exception has occured while fetching rank API. Please check the application."
