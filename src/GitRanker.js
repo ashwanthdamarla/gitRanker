@@ -34,6 +34,7 @@ class GitRanker extends Component {
         })
         .then((data) => {
           console.log(data);
+          this.setState({ fetchError: false });
           this.setState({ rankData: data });
         })
         .catch((error) => {
