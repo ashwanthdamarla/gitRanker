@@ -88,7 +88,7 @@ class GitRanker extends Component {
                   ? "Sorry Credit Exhausted"
                   : "Error Fetching. Please Try Again"
                 : this.state.actionDefault + " for " + this.state.profile
-              : "Error Loading. Please Try Again"}
+              : this.state.fetchError?"Error while fetching rank API. Please check the application.":"Error Loading. Please Try Again"}
           </Button>
         </Dialog>
       </div>

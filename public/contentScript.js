@@ -19,6 +19,13 @@ var apifilterList = [
   "readme",
   "customer-stories",
   "git-guides",
+  "explore",
+  "notifications",
+  "dashboard",
+  "dashboard",
+  "issues",
+  "pulls",
+  "mastering-markdown"
 ];
 var dataArrary = [];
 var tempData = null;
