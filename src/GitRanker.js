@@ -74,7 +74,7 @@ class GitRanker extends Component {
           >
             {this.state.loading
               ? "Crunching 50 million developers..."
-              : this.state.configData
+              : this.state.configData&&!this.state.fetchError
               ? this.state.rankData
                 ? this.state.rankData.message.average
                   ? "Github rank for the profile " +
