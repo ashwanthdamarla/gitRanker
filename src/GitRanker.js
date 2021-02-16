@@ -82,8 +82,7 @@ class GitRanker extends Component {
                     this.state.profile +
                     " is " +
                     String(
-                      Math.round(this.state.rankData.message.average * 100) /
-                        100
+                      (this.state.rankData.message.average * 100).toFixed(2)
                     ) +
                     "%"
                   : this.state.rankData.message.credit_exhausted
