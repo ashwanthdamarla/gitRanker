@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Getting Started with Git Ranker Browser Extension
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Chrome Extension developed using React framework scrapes github links associated to a browser window and attaches a popup extension to get the rank of the associated Git profile. 
 
-## Available Scripts
+The project has been tested and implemented mainly on Google Chrome browser.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+Assuming that the project is already pulled into the target local repository, the installation steps would continue as follows:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 1. Build the project
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Using `npm run build` command in the target directory build the project.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Running the build command exposed the build folder which is directory containing the static build files required to run a deployed React application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Since the chrome extension apps differ from the generic web applications, we cannot follow the generic approach of hosting a server in the localhost. The main reason would be because extensions are fundamentally expected to deploy on websites over cross domain server.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To address this issue, in this case, we are using the static files of the build folder as reference for the chrome extension application. Specifically the files  `./build/index.html`, `./build/contentScript.js` and `./build/manifest.json`, which are key components in iFrame window of extension application. The three files represent the presentation, server and configuration layers of the extension apllication.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 2. Loading the Extension into the Browser
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+With the Chrome Web Broswer or any other web browser that supports extensions open, navigate to the extensions menu/tab. 
+### Note: Make sure developer mode is enabled in the browser.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+With the developer mode enabled one can find the `Load Unpacked` button, which opens a file explorer window. We just need to point the build folder exposed in the initial step as the selected folder. The extension should now be ready and loaded into the browser.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 3. Testing the Application
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Enzyme integration testing framework is used to write tests for the React components of application. Application contains a main App.js component and a child GitRanker.js component.
 
-### Code Splitting
+The command `npm run test` can be used to run the predefined tests written in `App.test.js` and `GitRanker.test.js`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### `npm run test`
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 4. Working with Changes and Development
 
-### Making a Progressive Web App
+With the GitRanker repository loaded into the IDE workspace, changes to the Chrome extension application can be made similar to the native React applications by modifying the `./src` folder.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The chrome extension does not support one hot reloading to dynamically update the changes to the application. Hence, whenever the changes are made make sure to re-build the application using `npm run build` and reload the extension manually in the browser to see the changes.
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
