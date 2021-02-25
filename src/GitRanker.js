@@ -18,9 +18,9 @@ class GitRanker extends Component {
     var rankData = null;
     if (this.state.configData) {
       rankData = await fetch(
-        "https://ratings-api.dev.reputationaire.com/api/result?id=" +
+        "https://ratings-api.dev.yourdomain.com/api/result?id=" +
           this.state.configData +
-          "&access=f62345e8-9378-425b-b122-ecb4a9610a38",
+          "&access=YOUR_ACCESS_KEY_HERE",
         {
           method: "GET",
           dataType: "JSON",
