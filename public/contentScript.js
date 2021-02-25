@@ -59,7 +59,7 @@ async function MainApp() {
         pageLinks[i].parentNode.appendChild(divContent);
 
         tempData = await fetch(
-          "https://ratings-api.dev.reputationaire.com/api/request-rating",
+          "https://ratings-api.dev.yourdomain.com/api/request-rating",
           {
             method: "POST", // *GET, POST, PUT, DELETE, etc.
             headers: {
